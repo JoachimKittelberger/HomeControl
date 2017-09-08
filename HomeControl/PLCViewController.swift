@@ -321,7 +321,7 @@ extension PLCViewController: UITextFieldDelegate {
             }
         }
 
-        print("textFieldDieEndEditing tag: \(textField.tag)")
+        print("textFieldDidEndEditing tag: \(textField.tag)")
     }
     
     
