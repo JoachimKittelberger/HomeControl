@@ -96,9 +96,9 @@ class PLCViewController: UIViewController {
         isShutterAutomaticSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
         isShutterSommerPos.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
 
-        currentMode.text = "Current Mode: ???"
-        currentStateWind.text = "Current Wind state: ???"
-        currentStateLight.text = "Current Light state: ???"
+        currentMode.text = "Aktueller Modus: ???"
+        currentStateWind.text = "Aktueller Windstatus: ???"
+        currentStateLight.text = "Aktueller Lichtstatus: ???"
 
         
         // TODO jk: Müsste eigentlich in viewDidAppear gemacht werden. Ist das erste mal dort aber zu früh
@@ -205,14 +205,14 @@ class PLCViewController: UIViewController {
         var strState = ""
         switch (mode) {
         case 0:
-            strState = "Day"
+            strState = "Tag"
         case 1:
-            strState = "Night"
+            strState = "Nacht"
         default:
-            strState = "Unkown"
+            strState = "Unbekannt"
         }
         
-        let strLabel = String.init(format: "Current Mode: %02d - %@", mode, strState)
+        let strLabel = String.init(format: "Aktueller Modus: %02d - %@", mode, strState)
         currentMode.text = strLabel
     }
     
@@ -222,18 +222,18 @@ class PLCViewController: UIViewController {
         var strState = ""
         switch (state) {
         case 0:
-            strState = "ToHighDetected"
+            strState = "Wind erkannt"
         case 1:
-            strState = "ToHighState"
+            strState = "zu viel Wind"
         case 2:
-            strState = "LowDetected"
+            strState = "kein Wind erkannt"
         case 3:
-            strState = "LowState"
+            strState = "kein Wind"
         default:
-            strState = "Unkown"
+            strState = "Unbekannt"
         }
         
-        let strLabel = String.init(format: "Current Wind state: %02d - %@", state, strState)
+        let strLabel = String.init(format: "Aktueller Windstatus: %02d - %@", state, strState)
         currentStateWind.text = strLabel
     }
 
@@ -243,18 +243,18 @@ class PLCViewController: UIViewController {
         var strState = ""
         switch (state) {
         case 0:
-            strState = "OnDetected"
+            strState = "Hell erkannt"
         case 1:
-            strState = "OnState"
+            strState = "Hell"
         case 2:
-            strState = "OffDetected"
+            strState = "Dunkel erkannt"
         case 3:
-            strState = "OffState"
+            strState = "Dunkel"
         default:
-            strState = "Unkown"
+            strState = "Unbekannt"
         }
         
-        let strLabel = String.init(format: "Current Light state: %02d - %@", state, strState)
+        let strLabel = String.init(format: "Aktueller Lichtstatus: %02d - %@", state, strState)
         currentStateLight.text = strLabel
     }
     
