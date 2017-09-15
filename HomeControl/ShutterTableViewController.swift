@@ -108,7 +108,8 @@ class ShutterTableViewController: UITableViewController {
     
 
 
-
+/*
+     // set direct the outputs in the PLC
     func imageUpTaped(tapGestureRecognizerUp: UITapGestureRecognizer) {
         
         // Die  Info, welches Image gedrückt wurde, ist im .tag hinterlegt
@@ -139,6 +140,7 @@ class ShutterTableViewController: UITableViewController {
 
     
     
+     // set direct the outputs in the PLC
     func imageDownTaped(tapGestureRecognizerDown: UITapGestureRecognizer) {
         
         // Die  Info, welches Image gedrückt wurde, ist im .tag hinterlegt
@@ -166,9 +168,45 @@ class ShutterTableViewController: UITableViewController {
        
         print("The Image Down in \(item.name) was taped")
     }
+ */
+
+    func imageUpTaped(tapGestureRecognizerUp: UITapGestureRecognizer) {
+        
+        // Die  Info, welches Image gedrückt wurde, ist im .tag hinterlegt
+        let tapedImage = tapGestureRecognizerUp.view as! UIImageView
+        let item = shutterList.getShutter(forIndex: tapedImage.tag)
+        
+        let indexPath = IndexPath(row: tapedImage.tag, section: 0)
+        
+        let homeControlConnection = Jet32.sharedInstance
+        homeControlConnection.setFlag(288 + item.ID)        // Offset for flags up
+        
+        
+        tableView.reloadRows(at: [indexPath], with: .fade)
+        
+        print("The Image Up in \(item.name) was taped")
+    }
+    
+    
+    
+    func imageDownTaped(tapGestureRecognizerDown: UITapGestureRecognizer) {
+        
+        // Die  Info, welches Image gedrückt wurde, ist im .tag hinterlegt
+        let tapedImage = tapGestureRecognizerDown.view as! UIImageView
+        let item = shutterList.getShutter(forIndex: tapedImage.tag)
+        
+        let indexPath = IndexPath(row: tapedImage.tag, section: 0)
+        
+        let homeControlConnection = Jet32.sharedInstance
+        homeControlConnection.setFlag(256 + item.ID)        // Offset for flags Down
+        tableView.reloadRows(at: [indexPath], with: .fade)
+        
+        print("The Image Down in \(item.name) was taped")
+    }
 
 
-
+    
+    
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0

@@ -12,9 +12,10 @@ import Foundation
 class ShutterItem {
     
     let name: String
+    let ID: Int
     var isEnabled: Bool
 
-    let outputUp : Int
+    let outputUp: Int
     let outputDown: Int
 
     var isMovingDown: Bool = false
@@ -22,8 +23,9 @@ class ShutterItem {
     
     
     
-    init(name: String, isEnabled: Bool, outputUp: Int, outputDown: Int) {
+    init(name: String, ID: Int, isEnabled: Bool, outputUp: Int, outputDown: Int) {
         self.name = name
+        self.ID = ID
         self.isEnabled = isEnabled
         self.outputUp = outputUp
         self.outputDown = outputDown
