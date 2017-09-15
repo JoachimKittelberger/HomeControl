@@ -245,28 +245,28 @@
         <!--Steuerung-->
         <scene sceneID="o9o-Xu-PIH">
             <objects>
-                <viewController id="Tzt-S2-Zlj" customClass="PLCViewController" customModule="HomeControl" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Tzt-S2-Zlj" customClass="PLCViewController" customModule="HomeControl" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="p8J-nS-4Bo"/>
                         <viewControllerLayoutGuide type="bottom" id="4xE-ju-g7u"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5U1-OY-9oA">
+                    <view key="view" contentMode="scaleToFill" id="5U1-OY-9oA" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GfB-gW-z2e">
-                                <rect key="frame" x="16" y="72" width="343" height="485"/>
+                                <rect key="frame" x="16" y="72" width="343" height="550"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mbl-ub-gOi">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Aktuelle Uhrzeit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhM-9b-20y">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Aktuelle Uhrzeit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhM-9b-20y">
                                                 <rect key="frame" x="0.0" y="0.0" width="271.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qg3-vr-Jtc">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qg3-vr-Jtc">
                                                 <rect key="frame" x="271.5" y="0.0" width="71.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -478,50 +478,68 @@
                                             </switch>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6x-uq-K5D">
-                                        <rect key="frame" x="0.0" y="350" width="343" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6x-uq-K5D">
+                                        <rect key="frame" x="0.0" y="350" width="343" height="18.5"/>
                                         <state key="normal" title="Alle Rolladen auf"/>
                                         <connections>
                                             <action selector="allShuttersUp:" destination="Tzt-S2-Zlj" eventType="touchUpInside" id="HU8-PA-woy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GBJ-Ax-zhV">
-                                        <rect key="frame" x="0.0" y="385" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="373.5" width="343" height="30"/>
                                         <state key="normal" title="Alle Rolladen ab"/>
                                         <connections>
                                             <action selector="allShuttersDown:" destination="Tzt-S2-Zlj" eventType="touchUpInside" id="yvd-XS-v54"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmW-Ik-HBq">
-                                        <rect key="frame" x="0.0" y="420" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="408.5" width="343" height="30"/>
                                         <state key="normal" title="Alle Rolladen auf Sommerposition auf"/>
                                         <connections>
                                             <action selector="allShuttersSommerPosUp:" destination="Tzt-S2-Zlj" eventType="touchUpInside" id="THv-fG-wbV"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0W-FH-r59">
-                                        <rect key="frame" x="0.0" y="455" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="443.5" width="343" height="30"/>
                                         <state key="normal" title="Alle Rolladen auf Sommerpostion ab"/>
                                         <connections>
                                             <action selector="allShuttersSommerPosDown:" destination="Tzt-S2-Zlj" eventType="touchUpInside" id="rXH-Yz-1Bu"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Mode: Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfW-np-mUH">
+                                        <rect key="frame" x="0.0" y="478.5" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current State Wind: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsR-X0-U01">
+                                        <rect key="frame" x="0.0" y="504" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current State Light:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIs-03-xFC">
+                                        <rect key="frame" x="0.0" y="529.5" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="Mbl-ub-gOi" firstAttribute="leading" secondItem="GfB-gW-z2e" secondAttribute="leading" id="RrR-H3-gWY"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mbl-ub-gOi" secondAttribute="trailing" id="biv-Ry-9KS"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GfB-gW-z2e" firstAttribute="trailing" secondItem="5U1-OY-9oA" secondAttribute="trailingMargin" id="DPD-7y-qtD"/>
-                            <constraint firstItem="GfB-gW-z2e" firstAttribute="leading" secondItem="5U1-OY-9oA" secondAttribute="leadingMargin" id="Ktt-7N-kKZ"/>
-                            <constraint firstItem="GfB-gW-z2e" firstAttribute="top" secondItem="p8J-nS-4Bo" secondAttribute="bottom" constant="8" id="Qw9-FD-Ckb"/>
+                            <constraint firstItem="GfB-gW-z2e" firstAttribute="top" secondItem="p8J-nS-4Bo" secondAttribute="bottom" constant="8" id="0IA-h4-Rrw"/>
+                            <constraint firstItem="GfB-gW-z2e" firstAttribute="leading" secondItem="5U1-OY-9oA" secondAttribute="leadingMargin" id="BYU-ei-1D4"/>
+                            <constraint firstItem="GfB-gW-z2e" firstAttribute="width" secondItem="5U1-OY-9oA" secondAttribute="width" constant="-32" id="DNX-jz-ufO"/>
+                            <constraint firstAttribute="bottom" secondItem="GfB-gW-z2e" secondAttribute="bottom" constant="45" id="Tfo-Ms-O3x"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Steuerung" id="egy-hO-fAf"/>
                     <connections>
+                        <outlet property="currentMode" destination="PfW-np-mUH" id="KUI-Gi-guX"/>
+                        <outlet property="currentStateLight" destination="TIs-03-xFC" id="z7l-xs-VmL"/>
+                        <outlet property="currentStateWind" destination="zsR-X0-U01" id="OOE-Z8-Nzw"/>
                         <outlet property="hourShutterDown" destination="P5E-se-bpr" id="aKO-yV-qbE"/>
                         <outlet property="hourShutterUp" destination="mJg-40-8Jz" id="7g9-sq-PcO"/>
                         <outlet property="hourShutterUpWeekend" destination="ANJ-JC-nMx" id="6Qh-id-z4k"/>

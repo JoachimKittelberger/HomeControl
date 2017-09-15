@@ -22,7 +22,9 @@ class JetGlobalVariables {
     
     
     // registers for controlling the settings
-    let regCurrentStateNightDay = 1000100    // state for eDayState (day = 0, night = 1)
+    static let regCurrentStateNightDay = 1000100    // state for eDayState (day = 0, night = 1)
+    static let regCurrentStateWind = 1000101       // ToHighDetected = 0, ToHighState = 1, LowDetected = 2, LowState = 3
+    static let regCurrentStateLight = 1000102      // OnDetected = 0, OnState = 1, OffDetected = 2, OffState = 3
     
     static let regUpTimeHour = 1000110
     static let regUpTimeMinute = 1000111

@@ -26,6 +26,10 @@ class PLCViewController: UIViewController {
         case readIsAutomaticBlind
         case readIsAutomaticShutter
         case readIsAutomaticSummerMode
+        
+        case readCurrentStateNightDay
+        case readCurrentStateWind
+        case readCurrentStateLight
     }
     
     
@@ -51,6 +55,9 @@ class PLCViewController: UIViewController {
     @IBOutlet weak var isBlindAutomaticSwitch: UISwitch!
     @IBOutlet weak var isShutterAutomaticSwitch: UISwitch!
     @IBOutlet weak var isShutterSommerPos: UISwitch!
+    @IBOutlet weak var currentMode: UILabel!
+    @IBOutlet weak var currentStateWind: UILabel!
+    @IBOutlet weak var currentStateLight: UILabel!
     
     @IBAction func allShuttersUp(_ sender: Any) {
         homeConnection.setFlag(JetGlobalVariables.flagCmdAllAutomaticShuttersUp)
@@ -71,7 +78,7 @@ class PLCViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
         // Do any additional setup after loading the view.
         // set the IDs of the controls TODO sollte eigentlich nur eimal gemacht werden.
         hourShutterUp.tag = Int(PLCViewControllerTag.readHourShutterUp.rawValue)
@@ -89,10 +96,16 @@ class PLCViewController: UIViewController {
         isShutterAutomaticSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
         isShutterSommerPos.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
 
+        currentMode.text = "Current Mode: ???"
+        currentStateWind.text = "Current Wind state: ???"
+        currentStateLight.text = "Current Light state: ???"
+
+        
         // TODO jk: Müsste eigentlich in viewDidAppear gemacht werden. Ist das erste mal dort aber zu früh
         readTimeFromPLC()
         readTimeSettingsFromPLC()
         readShutterSettingsFromPLC()
+        readStatesFromPLC()
     }
 
  
@@ -105,6 +118,7 @@ class PLCViewController: UIViewController {
         readTimeFromPLC()
         readTimeSettingsFromPLC()
         readShutterSettingsFromPLC()
+        readStatesFromPLC()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -124,7 +138,8 @@ class PLCViewController: UIViewController {
     
     func onTimer() {
         readTimeFromPLC()
-    }
+        readStatesFromPLC()
+   }
     
     func readTimeFromPLC() {
         let _ = homeConnection.readIntRegister(JetGlobalVariables.regSecond, tag: UInt32(PLCViewControllerTag.readSecond.rawValue))
@@ -147,6 +162,12 @@ class PLCViewController: UIViewController {
         let _ = homeConnection.readFlag(JetGlobalVariables.flagIsAutomaticSummerMode, tag: UInt32(PLCViewControllerTag.readIsAutomaticSummerMode.rawValue))
     }
     
+    func readStatesFromPLC() {
+        let _ = homeConnection.readIntRegister(JetGlobalVariables.regCurrentStateNightDay, tag: UInt32(PLCViewControllerTag.readCurrentStateNightDay.rawValue))
+        let _ = homeConnection.readIntRegister(JetGlobalVariables.regCurrentStateWind, tag: UInt32(PLCViewControllerTag.readCurrentStateWind.rawValue))
+        let _ = homeConnection.readIntRegister(JetGlobalVariables.regCurrentStateLight, tag: UInt32(PLCViewControllerTag.readCurrentStateLight.rawValue))
+    }
+
     
     func writeCurrtenTimeToPLC() {
         let date = Date()
@@ -176,6 +197,65 @@ class PLCViewController: UIViewController {
         let strHour = String.init(format: "%02d", hour)
         
         timeLabel.text = "\(strHour):\(strMinutes):\(strSeconds)"
+    }
+    
+
+    func setModeLabelText(mode: Int) {
+
+        var strState = ""
+        switch (mode) {
+        case 0:
+            strState = "Day"
+        case 1:
+            strState = "Night"
+        default:
+            strState = "Unkown"
+        }
+        
+        let strLabel = String.init(format: "Current Mode: %02d - %@", mode, strState)
+        currentMode.text = strLabel
+    }
+    
+
+    func setStateWindLabelText(state: Int) {
+
+        var strState = ""
+        switch (state) {
+        case 0:
+            strState = "ToHighDetected"
+        case 1:
+            strState = "ToHighState"
+        case 2:
+            strState = "LowDetected"
+        case 3:
+            strState = "LowState"
+        default:
+            strState = "Unkown"
+        }
+        
+        let strLabel = String.init(format: "Current Wind state: %02d - %@", state, strState)
+        currentStateWind.text = strLabel
+    }
+
+
+    func setStateLightLabelText(state: Int) {
+
+        var strState = ""
+        switch (state) {
+        case 0:
+            strState = "OnDetected"
+        case 1:
+            strState = "OnState"
+        case 2:
+            strState = "OffDetected"
+        case 3:
+            strState = "OffState"
+        default:
+            strState = "Unkown"
+        }
+        
+        let strLabel = String.init(format: "Current Light state: %02d - %@", state, strState)
+        currentStateLight.text = strLabel
     }
     
     
@@ -252,7 +332,17 @@ extension PLCViewController: Jet32Delegate {
 
             case .readMinuteShutterUpWeekend:
                 minuteShutterUpWeekend.text = String.init(format: "%02d", value)
-            
+
+
+            case .readCurrentStateNightDay:
+                setModeLabelText(mode: Int(value))
+                
+            case .readCurrentStateWind:
+                setStateWindLabelText(state: Int(value))
+                
+            case .readCurrentStateLight:
+                setStateLightLabelText(state: Int(value))
+                
             default:
                 print("Error: didReceiveReadRegister no case for tag \(tag)")
                 
@@ -298,9 +388,9 @@ extension PLCViewController: UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        // TODO schreiben geht noch nicht. Evtl. wegen der hohen Registernummern. Mal in Jet32-Code nachschauen
 
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    
         if let plcTag = PLCViewControllerTag(rawValue: UInt32(textField.tag)) {
             switch (plcTag) {
             case .readHourShutterUp:
