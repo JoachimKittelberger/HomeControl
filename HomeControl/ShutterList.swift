@@ -11,14 +11,30 @@ import Foundation
 // shutters with the same ID as in the PLC
 // ID ist also offset for Flags
 enum Shutters: Int {
-    case BlindLeft = 0, BlindMiddle, BlindRight,
-    TerraceRight, LivingRoomLeft, LivingRoomRight, TerraceLeft,
-    Kitchen, Office, Toilet, Bath, Guest,
-    DoorGallery, DoorSleeping,
-    SkylightBath, SkylightGallery, SkylightStaircase,
-    ShutterSkylightGallery, ShutterSkylightStaircase, ShutterSkylightBath,
-    HobbyLeft, HobbyRight
+    case BlindLeft = 0,
+    BlindMiddle,
+    BlindRight,
     
+    TerraceRight,
+    LivingRoomLeft,
+    LivingRoomRight,
+    TerraceLeft,
+    Kitchen,
+    Office,
+    Toilet,
+    Bath,
+    Guest,
+    DoorGallery,
+    DoorSleeping,
+    SkylightBath,
+    SkylightGallery,
+    SkylightStaircase,
+    ShutterSkylightGallery,
+    ShutterSkylightStaircase,
+    ShutterSkylightBath,
+    
+    HobbyLeft,
+    HobbyRight
 }
 
 // used with rawValue

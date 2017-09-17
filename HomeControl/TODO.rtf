@@ -9,18 +9,18 @@
 \
 \
 Noch offene Punkte:\
-- Delegate f\'fcr Jet32Delegate implementieren. Gibt ein R\'fcckruf der Funktionen ReadIntRegister, ReadFlag\
++ Delegate f\'fcr Jet32Delegate implementieren. Gibt ein R\'fcckruf der Funktionen ReadIntRegister, ReadFlag\
 \
 \
 - Die Elemente der Cell als Stackviews einbauen\
-- Anzeige der Echtzeituhr und Einstellen auf die aktuelle Zeit im Handy\
-- Einstellungen f\'fcr Rolladenautomatik global ein/aus\
-- Einstellungen f\'fcr Sommerposition in Abh\'e4ngigkeit von Rolladenautomatik ein/aus grau hinterlegt\
-- Einstellungen f\'fcr Jalousienautomatik ein/aus\
-- Button f\'fcr Alle Rolladen schlie\'dfen\
-- Button f\'fcr Alle Rolladen \'f6ffnen\
++ Anzeige der Echtzeituhr und Einstellen auf die aktuelle Zeit im Handy\
++ Einstellungen f\'fcr Rolladenautomatik global ein/aus\
++ Einstellungen f\'fcr Sommerposition in Abh\'e4ngigkeit von Rolladenautomatik ein/aus grau hinterlegt\
++ Einstellungen f\'fcr Jalousienautomatik ein/aus\
++ Button f\'fcr Alle Rolladen schlie\'dfen\
++ Button f\'fcr Alle Rolladen \'f6ffnen\
 \
-- IP-Adresse eingeben und als User-Settings abspeichern\
++ IP-Adresse eingeben und als User-Settings abspeichern\
 - Zugriff auf Einstellungen nur \'fcber Passwort oder Touch-ID\
 - Anzeige des Kommunikationsstatus zur Steuerung\
 - Kommunikation in einem separaten Thread?\
@@ -28,8 +28,8 @@ Noch offene Punkte:\
 \
 \
 - Rolladen \'fcber Buttons steuern. Solange Ausgang einschalten, wie Button getaped wird\
-- Rolladen \'fcber Flags automatisch hoch/runter fahren\
-	- Dazu ist vermutlich ein weiteres Kommando in STX notwendig, das Commandos in einer Queue abarbeitet und die Rolladen entsprechend nach oben oder unten f\'e4hrt.\
++ Rolladen \'fcber Flags automatisch hoch/runter fahren\
+	+ Dazu ist vermutlich ein weiteres Kommando in STX notwendig, das Commandos in einer Queue abarbeitet und die Rolladen entsprechend nach oben oder unten f\'e4hrt.\
 \
 \
 TODO:\
@@ -39,7 +39,9 @@ TODO:\
 Ideen:\
 - Die Abfrage nach der Verbindung kann \'fcber regelm\'e4ssige Cmd: u gemacht werden, und schauen, ob der Status passt.\
 - Evtl. kann in den Sendefunktionen \'fcberpr\'fcft werden, ob ein Antworttelegramm empfangen wurde mit Wait....\
-- Im unteren Teil sollte noch eine Navigationszeile angezeigt werden, mit der man auf Einstellungsseiten usw. kommt\
-- Im Steuerungsprogramm noch Merker vorsehen, welche jeden Rolladen \'fcbe das Steuerungsprogramm automatisch \'f6ffnet und schlie\'dft\
++ Im unteren Teil sollte noch eine Navigationszeile angezeigt werden, mit der man auf Einstellungsseiten usw. kommt\
++ Im Steuerungsprogramm noch Merker vorsehen, welche jeden Rolladen \'fcbe das Steuerungsprogramm automatisch \'f6ffnet und schlie\'dft\
 -!!!! Evtl. eine Kommandoschnittstelle in die Steuerung einbauen, das bei Beschreiben eines Registers eine bestimmte Aktion ausl\'f6st. Damit k\'f6nnte dann z.B. auch das Garagentor ge\'f6ffnet werden.\
-}
+\
+Fehler:\
+- Wenn WLAN beim Starten nicht ein ist und im Nachhinein eingeschaltet wird, synchronisiert sich App nicht mehr mit Steuerung. Ein Neustart der App ist notwendig.}

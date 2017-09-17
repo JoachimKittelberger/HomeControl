@@ -19,6 +19,8 @@ class JetGlobalVariables {
     static let flagIsAutomaticSummerMode = 104
     static let flagCmdAllAutomaticShuttersDownSummerPos = 105
     static let flagCmdAllAutomaticShuttersUpSummerPos = 106
+
+    static let flagIsSaunaOn = 107
     
     
     // registers for controlling the settings

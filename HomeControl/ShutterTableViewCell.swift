@@ -12,10 +12,8 @@ class ShutterTableViewCell: UITableViewCell {
 
     @IBOutlet weak var downImageView: UIImageView!
     
-    
     @IBOutlet weak var upImageView: UIImageView!
 
     @IBOutlet weak var nameLabel: UILabel!
-    
     
 }

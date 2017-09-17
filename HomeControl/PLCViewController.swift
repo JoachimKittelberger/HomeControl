@@ -26,6 +26,8 @@ class PLCViewController: UIViewController {
         case readIsAutomaticBlind
         case readIsAutomaticShutter
         case readIsAutomaticSummerMode
+
+        case readIsSaunaOn
         
         case readCurrentStateNightDay
         case readCurrentStateWind
@@ -55,6 +57,7 @@ class PLCViewController: UIViewController {
     @IBOutlet weak var isBlindAutomaticSwitch: UISwitch!
     @IBOutlet weak var isShutterAutomaticSwitch: UISwitch!
     @IBOutlet weak var isShutterSommerPos: UISwitch!
+    @IBOutlet weak var isSaunaOnSwitch: UISwitch!
     @IBOutlet weak var currentMode: UILabel!
     @IBOutlet weak var currentStateWind: UILabel!
     @IBOutlet weak var currentStateLight: UILabel!
@@ -91,10 +94,13 @@ class PLCViewController: UIViewController {
         isBlindAutomaticSwitch.tag = Int(PLCViewControllerTag.readIsAutomaticBlind.rawValue)
         isShutterAutomaticSwitch.tag = Int(PLCViewControllerTag.readIsAutomaticShutter.rawValue)
         isShutterSommerPos.tag = Int(PLCViewControllerTag.readIsAutomaticSummerMode.rawValue)
+        isSaunaOnSwitch.tag = Int(PLCViewControllerTag.readIsSaunaOn.rawValue)
         
         isBlindAutomaticSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
         isShutterAutomaticSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
         isShutterSommerPos.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+        
+        isSaunaOnSwitch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
 
         currentMode.text = "Aktueller Modus: ???"
         currentStateWind.text = "Aktueller Windstatus: ???"
@@ -105,6 +111,7 @@ class PLCViewController: UIViewController {
         readTimeFromPLC()
         readTimeSettingsFromPLC()
         readShutterSettingsFromPLC()
+        readOtherSettingsFromPLC()
         readStatesFromPLC()
     }
 
@@ -118,6 +125,7 @@ class PLCViewController: UIViewController {
         readTimeFromPLC()
         readTimeSettingsFromPLC()
         readShutterSettingsFromPLC()
+        readOtherSettingsFromPLC()
         readStatesFromPLC()
     }
     
@@ -160,6 +168,10 @@ class PLCViewController: UIViewController {
         let _ = homeConnection.readFlag(JetGlobalVariables.flagIsAutomaticBlind, tag: UInt32(PLCViewControllerTag.readIsAutomaticBlind.rawValue))
         let _ = homeConnection.readFlag(JetGlobalVariables.flagIsAutomaticShutter, tag: UInt32(PLCViewControllerTag.readIsAutomaticShutter.rawValue))
         let _ = homeConnection.readFlag(JetGlobalVariables.flagIsAutomaticSummerMode, tag: UInt32(PLCViewControllerTag.readIsAutomaticSummerMode.rawValue))
+    }
+    
+    func readOtherSettingsFromPLC() {
+        let _ = homeConnection.readFlag(JetGlobalVariables.flagIsSaunaOn, tag: UInt32(PLCViewControllerTag.readIsSaunaOn.rawValue))
     }
     
     func readStatesFromPLC() {
@@ -275,6 +287,9 @@ class PLCViewController: UIViewController {
                 
             case .readIsAutomaticSummerMode:
                 isOn ? homeConnection.setFlag(JetGlobalVariables.flagIsAutomaticSummerMode) : homeConnection.resetFlag(JetGlobalVariables.flagIsAutomaticSummerMode)
+
+            case .readIsSaunaOn:
+                isOn ? homeConnection.setFlag(JetGlobalVariables.flagIsSaunaOn) : homeConnection.resetFlag(JetGlobalVariables.flagIsSaunaOn)
                 
             default:
                 print("Error: switchChanged no case for tag \(mySwitch.tag)")
@@ -367,6 +382,9 @@ extension PLCViewController: Jet32Delegate {
                 
             case .readIsAutomaticSummerMode:
                 isShutterSommerPos.setOn(value, animated: false)
+
+            case .readIsSaunaOn:
+                isSaunaOnSwitch.setOn(value, animated: false)
                
             default:
                 print("Error: didReceiveReadFlag no case for tag \(tag)")
