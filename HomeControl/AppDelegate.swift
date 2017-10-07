@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let UDPPORTSEND = "udpPortSend"
     let UDPPORTRECEIVE = "udpPortReceive"
     let HOST = "host"
+    let TIMEOUTJET32 = "timeout"
 
     
     
@@ -42,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         homeControlConnection.udpPortSend = UInt16(UserDefaults.standard.integer(forKey: UDPPORTSEND))
         homeControlConnection.udpPortReceive = UInt16(UserDefaults.standard.integer(forKey: UDPPORTRECEIVE))
         homeControlConnection.host = UserDefaults.standard.string(forKey: HOST)!
+        homeControlConnection.timeoutJet32 = UInt16(UserDefaults.standard.integer(forKey: TIMEOUTJET32))
 
         print("application.didFinishLaunchingWithOptions");
         return true
@@ -65,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(Int(homeControlConnection.udpPortSend), forKey: UDPPORTSEND)
         UserDefaults.standard.set(Int(homeControlConnection.udpPortReceive), forKey: UDPPORTRECEIVE)
         UserDefaults.standard.set((homeControlConnection.host), forKey: HOST)
+        UserDefaults.standard.set(Int(homeControlConnection.timeoutJet32), forKey: TIMEOUTJET32)
         
         print("application.applicationDidEnterBackground");
     }

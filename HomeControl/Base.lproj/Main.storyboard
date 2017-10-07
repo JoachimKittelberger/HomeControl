@@ -34,13 +34,13 @@
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mhu-32-uqT">
-                                            <rect key="frame" x="275" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="267" y="0.0" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="Ojl-ij-DQB"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9K-1c-m1X">
-                                            <rect key="frame" x="8" y="14" width="259" height="21"/>
+                                            <rect key="frame" x="8" y="14" width="251" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                                         <constraint firstItem="Y9K-1c-m1X" firstAttribute="leading" secondItem="1qf-7j-L6S" secondAttribute="leadingMargin" id="XRk-rD-bFu"/>
                                         <constraint firstItem="9gh-ZI-xZt" firstAttribute="top" secondItem="1qf-7j-L6S" secondAttribute="top" id="ege-Ta-ySK"/>
                                         <constraint firstAttribute="bottom" secondItem="mhu-32-uqT" secondAttribute="bottom" id="eqv-0v-Zgi"/>
-                                        <constraint firstItem="9gh-ZI-xZt" firstAttribute="leading" secondItem="mhu-32-uqT" secondAttribute="trailing" id="fsG-Vj-3t8"/>
+                                        <constraint firstItem="9gh-ZI-xZt" firstAttribute="leading" secondItem="mhu-32-uqT" secondAttribute="trailing" constant="8" id="fsG-Vj-3t8"/>
                                         <constraint firstItem="Y9K-1c-m1X" firstAttribute="centerY" secondItem="1qf-7j-L6S" secondAttribute="centerY" id="kfK-d4-bZt"/>
                                         <constraint firstAttribute="trailing" secondItem="9gh-ZI-xZt" secondAttribute="trailing" id="nxM-zR-AYE"/>
                                         <constraint firstAttribute="bottom" secondItem="9gh-ZI-xZt" secondAttribute="bottom" id="qhA-8Q-rQ3"/>
@@ -146,7 +146,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qFi-sO-Nqw">
-                                <rect key="frame" x="16" y="72" width="343" height="130"/>
+                                <rect key="frame" x="16" y="72" width="343" height="180"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Om2-w4-AZv">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
@@ -217,6 +217,29 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lIo-LT-lSA">
+                                        <rect key="frame" x="0.0" y="150" width="343" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timeout:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFi-gY-SIv">
+                                                <rect key="frame" x="0.0" y="0.0" width="143" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mI5-wH-o2C">
+                                                <rect key="frame" x="143" y="0.0" width="200" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="1De-TO-YRU"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="hDl-h5-7Ft" id="UBi-Xc-pVC"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Om2-w4-AZv" secondAttribute="trailing" id="3j5-Wx-xJG"/>
@@ -236,6 +259,7 @@
                         <outlet property="ipAdress" destination="2RX-6s-Dtg" id="fRo-Pa-6zf"/>
                         <outlet property="receivePort" destination="kj4-8z-uE0" id="IUc-sE-p2m"/>
                         <outlet property="sendPort" destination="93h-fl-Lho" id="zaU-os-F4w"/>
+                        <outlet property="timeoutJet32" destination="mI5-wH-o2C" id="YbP-mo-k2d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F6n-Kc-yKf" userLabel="First Responder" sceneMemberID="firstResponder"/>

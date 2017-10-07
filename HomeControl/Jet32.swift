@@ -37,12 +37,16 @@ class Jet32 : NSObject, GCDAsyncUdpSocketDelegate {
     var udpPortSend: UInt16 = 0
     var udpPortReceive: UInt16 = 0
     var host = "127.0.0.1"
+    var timeoutJet32 : UInt16 = 2000     // TODO: Default Jet32 Timeout 2 s
 
     var inSocket: GCDAsyncUdpSocket?
     var outSocket: GCDAsyncUdpSocket?
 
     var timeout: TimeInterval = 2   // Default Timeout: 2s
+    var isConnected : Bool = false     // TODO: mit Timeout-Überprüfung
     
+    // TODO communication with Queue
+    var PlcCDataAccessQueue = [PlcDataAccessEntry]()
     
     
     
@@ -143,6 +147,8 @@ class Jet32 : NSObject, GCDAsyncUdpSocketDelegate {
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didNotConnect error: Error?) {
         print("didNotConnect \(String(describing: error?.localizedDescription))")
+        
+        
     }
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didSendDataWithTag tag: Int) {
@@ -151,6 +157,9 @@ class Jet32 : NSObject, GCDAsyncUdpSocketDelegate {
 
     func udpSocket(_ sock: GCDAsyncUdpSocket, didNotSendDataWithTag tag: Int, dueToError error: Error?) {
         print("didNotSendDataWithTag \(tag) \(String(describing: error?.localizedDescription))")
+        
+        
+        
     }
     
     
@@ -189,6 +198,8 @@ class Jet32 : NSObject, GCDAsyncUdpSocketDelegate {
         
     }
 
+    
+    
     func disconnect() {
         // incoming socket
         if inSocket != nil {

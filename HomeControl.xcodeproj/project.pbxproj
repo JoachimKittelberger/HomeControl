@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		278DCF811F72FA0B008DEFEA /* HomeControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278DCF801F72FA0B008DEFEA /* HomeControlTests.swift */; };
 		27A5E8531EEBE0BB005ABA8F /* Jet32DataTelegram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A5E8521EEBE0BB005ABA8F /* Jet32DataTelegram.swift */; };
 		27B642631EF2F70800E485B1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B642621EF2F70800E485B1 /* SettingsViewController.swift */; };
 		27B642651EF429A600E485B1 /* PLCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B642641EF429A600E485B1 /* PLCViewController.swift */; };
@@ -22,14 +23,29 @@
 		27C876B41EE8586F00CD4A3F /* ShutterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C876B31EE8586F00CD4A3F /* ShutterTableViewCell.swift */; };
 		27C876B61EE92BBA00CD4A3F /* Jet32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C876B51EE92BBA00CD4A3F /* Jet32.swift */; };
 		27C876BC1EE969AE00CD4A3F /* JetGlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C876BB1EE969AE00CD4A3F /* JetGlobalVariables.swift */; };
-		27C876BE1EE96E4000CD4A3F /* TODO.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 27C876BD1EE96E4000CD4A3F /* TODO.rtf */; };
 		27C876C51EEA8E3900CD4A3F /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C876C21EEA8E3900CD4A3F /* GCDAsyncSocket.m */; };
 		27C876C61EEA8E3900CD4A3F /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C876C41EEA8E3900CD4A3F /* GCDAsyncUdpSocket.m */; };
 		27C876C81EEAB08900CD4A3F /* ShutterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C876C71EEAB08900CD4A3F /* ShutterDetailViewController.swift */; };
 		27C876CA1EEAFF8500CD4A3F /* Data+hexEncodedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C876C91EEAFF8500CD4A3F /* Data+hexEncodedString.swift */; };
+		27EEB5B41F890FE00033427E /* PlcDataAccessibleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EEB5B31F890FE00033427E /* PlcDataAccessibleProtocol.swift */; };
+		27EEB5B61F8917F40033427E /* PlcDataAccessibleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EEB5B51F8917F40033427E /* PlcDataAccessibleDelegate.swift */; };
+		27EEB5B81F8919540033427E /* PlcDataAccessEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EEB5B71F8919540033427E /* PlcDataAccessEntry.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		278DCF831F72FA0B008DEFEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27C8768C1EE8450A00CD4A3F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27C876931EE8450A00CD4A3F;
+			remoteInfo = HomeControl;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		278DCF7E1F72FA0B008DEFEA /* HomeControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		278DCF801F72FA0B008DEFEA /* HomeControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControlTests.swift; sourceTree = "<group>"; };
+		278DCF821F72FA0B008DEFEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27A5E8521EEBE0BB005ABA8F /* Jet32DataTelegram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jet32DataTelegram.swift; sourceTree = "<group>"; };
 		27B642621EF2F70800E485B1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		27B642641EF429A600E485B1 /* PLCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCViewController.swift; sourceTree = "<group>"; };
@@ -55,9 +71,19 @@
 		27C876C41EEA8E3900CD4A3F /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		27C876C71EEAB08900CD4A3F /* ShutterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShutterDetailViewController.swift; sourceTree = "<group>"; };
 		27C876C91EEAFF8500CD4A3F /* Data+hexEncodedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+hexEncodedString.swift"; sourceTree = "<group>"; };
+		27EEB5B31F890FE00033427E /* PlcDataAccessibleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlcDataAccessibleProtocol.swift; sourceTree = "<group>"; };
+		27EEB5B51F8917F40033427E /* PlcDataAccessibleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlcDataAccessibleDelegate.swift; sourceTree = "<group>"; };
+		27EEB5B71F8919540033427E /* PlcDataAccessEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlcDataAccessEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		278DCF7B1F72FA0B008DEFEA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27C876911EE8450A00CD4A3F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -68,10 +94,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		278DCF7F1F72FA0B008DEFEA /* HomeControlTests */ = {
+			isa = PBXGroup;
+			children = (
+				278DCF801F72FA0B008DEFEA /* HomeControlTests.swift */,
+				278DCF821F72FA0B008DEFEA /* Info.plist */,
+			);
+			path = HomeControlTests;
+			sourceTree = "<group>";
+		};
 		27C8768B1EE8450A00CD4A3F = {
 			isa = PBXGroup;
 			children = (
 				27C876961EE8450A00CD4A3F /* HomeControl */,
+				278DCF7F1F72FA0B008DEFEA /* HomeControlTests */,
 				27C876951EE8450A00CD4A3F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				27C876941EE8450A00CD4A3F /* HomeControl.app */,
+				278DCF7E1F72FA0B008DEFEA /* HomeControlTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +166,9 @@
 				27C876C91EEAFF8500CD4A3F /* Data+hexEncodedString.swift */,
 				27A5E8521EEBE0BB005ABA8F /* Jet32DataTelegram.swift */,
 				27B642661EF43DD900E485B1 /* Jet32Delegate.swift */,
+				27EEB5B31F890FE00033427E /* PlcDataAccessibleProtocol.swift */,
+				27EEB5B51F8917F40033427E /* PlcDataAccessibleDelegate.swift */,
+				27EEB5B71F8919540033427E /* PlcDataAccessEntry.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -158,6 +198,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		278DCF7D1F72FA0B008DEFEA /* HomeControlTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 278DCF871F72FA0B008DEFEA /* Build configuration list for PBXNativeTarget "HomeControlTests" */;
+			buildPhases = (
+				278DCF7A1F72FA0B008DEFEA /* Sources */,
+				278DCF7B1F72FA0B008DEFEA /* Frameworks */,
+				278DCF7C1F72FA0B008DEFEA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				278DCF841F72FA0B008DEFEA /* PBXTargetDependency */,
+			);
+			name = HomeControlTests;
+			productName = HomeControlTests;
+			productReference = 278DCF7E1F72FA0B008DEFEA /* HomeControlTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		27C876931EE8450A00CD4A3F /* HomeControl */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27C876A61EE8450A00CD4A3F /* Build configuration list for PBXNativeTarget "HomeControl" */;
@@ -185,6 +243,12 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Joachim Kittelberger";
 				TargetAttributes = {
+					278DCF7D1F72FA0B008DEFEA = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 4AW7RY7L4G;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 27C876931EE8450A00CD4A3F;
+					};
 					27C876931EE8450A00CD4A3F = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = FNGMABF4M4;
@@ -207,17 +271,24 @@
 			projectRoot = "";
 			targets = (
 				27C876931EE8450A00CD4A3F /* HomeControl */,
+				278DCF7D1F72FA0B008DEFEA /* HomeControlTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		278DCF7C1F72FA0B008DEFEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27C876921EE8450A00CD4A3F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				27C79FFC1F2A344100928A31 /* appdefaults.plist in Resources */,
-				27C876BE1EE96E4000CD4A3F /* TODO.rtf in Resources */,
 				27C876A21EE8450A00CD4A3F /* LaunchScreen.storyboard in Resources */,
 				27C8769F1EE8450A00CD4A3F /* Assets.xcassets in Resources */,
 				27C8769D1EE8450A00CD4A3F /* Main.storyboard in Resources */,
@@ -227,13 +298,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		278DCF7A1F72FA0B008DEFEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				278DCF811F72FA0B008DEFEA /* HomeControlTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27C876901EE8450A00CD4A3F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				27C876C51EEA8E3900CD4A3F /* GCDAsyncSocket.m in Sources */,
 				27C876C61EEA8E3900CD4A3F /* GCDAsyncUdpSocket.m in Sources */,
+				27EEB5B41F890FE00033427E /* PlcDataAccessibleProtocol.swift in Sources */,
 				27C876BC1EE969AE00CD4A3F /* JetGlobalVariables.swift in Sources */,
+				27EEB5B61F8917F40033427E /* PlcDataAccessibleDelegate.swift in Sources */,
 				27C876C81EEAB08900CD4A3F /* ShutterDetailViewController.swift in Sources */,
 				27C876981EE8450A00CD4A3F /* AppDelegate.swift in Sources */,
 				27C876B41EE8586F00CD4A3F /* ShutterTableViewCell.swift in Sources */,
@@ -243,6 +324,7 @@
 				27B642651EF429A600E485B1 /* PLCViewController.swift in Sources */,
 				27C876CA1EEAFF8500CD4A3F /* Data+hexEncodedString.swift in Sources */,
 				27A5E8531EEBE0BB005ABA8F /* Jet32DataTelegram.swift in Sources */,
+				27EEB5B81F8919540033427E /* PlcDataAccessEntry.swift in Sources */,
 				27B642631EF2F70800E485B1 /* SettingsViewController.swift in Sources */,
 				27C876B61EE92BBA00CD4A3F /* Jet32.swift in Sources */,
 				27C876B01EE8463F00CD4A3F /* ShutterList.swift in Sources */,
@@ -250,6 +332,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		278DCF841F72FA0B008DEFEA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27C876931EE8450A00CD4A3F /* HomeControl */;
+			targetProxy = 278DCF831F72FA0B008DEFEA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		27C8769B1EE8450A00CD4A3F /* Main.storyboard */ = {
@@ -271,6 +361,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		278DCF851F72FA0B008DEFEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4AW7RY7L4G;
+				INFOPLIST_FILE = HomeControlTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.KibeSoft.HomeControlTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HomeControl.app/HomeControl";
+			};
+			name = Debug;
+		};
+		278DCF861F72FA0B008DEFEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4AW7RY7L4G;
+				INFOPLIST_FILE = HomeControlTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.KibeSoft.HomeControlTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HomeControl.app/HomeControl";
+			};
+			name = Release;
+		};
 		27C876A41EE8450A00CD4A3F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -406,6 +524,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		278DCF871F72FA0B008DEFEA /* Build configuration list for PBXNativeTarget "HomeControlTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				278DCF851F72FA0B008DEFEA /* Debug */,
+				278DCF861F72FA0B008DEFEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		27C8768F1EE8450A00CD4A3F /* Build configuration list for PBXProject "HomeControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

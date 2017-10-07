@@ -52,7 +52,7 @@ class Jet32DataTelegram {
         dataHeader[10] = myIntData[1]
         dataHeader[11] = myIntData[0]
 
-        // insert receive oirt
+        // insert receive port
         myInt = receivePort
         myIntData = Data(bytes: &myInt, count: MemoryLayout.size(ofValue: myInt))
         

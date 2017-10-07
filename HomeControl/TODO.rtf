@@ -44,4 +44,21 @@ Ideen:\
 -!!!! Evtl. eine Kommandoschnittstelle in die Steuerung einbauen, das bei Beschreiben eines Registers eine bestimmte Aktion ausl\'f6st. Damit k\'f6nnte dann z.B. auch das Garagentor ge\'f6ffnet werden.\
 \
 Fehler:\
-- Wenn WLAN beim Starten nicht ein ist und im Nachhinein eingeschaltet wird, synchronisiert sich App nicht mehr mit Steuerung. Ein Neustart der App ist notwendig.}
+- Wenn WLAN beim Starten nicht ein ist und im Nachhinein eingeschaltet wird, synchronisiert sich App nicht mehr mit Steuerung. Ein Neustart der App ist notwendig, da nur beim Start der App ein connect() gemacht wird.\
+\
+\
+Kommunikation:\
+- Bei jeder Kommunikation den Timeoutwert aus timeoutJet32 mitnehmen\
+- Kommunikationsanfrage in eine Queue stellen und eine eindeutige ID vergeben.\
+- Wenn Telegramm zur\'fcckkommt, dieses dem entsprechenden Queue-Inhalt zuweisen und aus der Queue entfernen sowie callback-Funktion aufrufen\
+- Bei synchroner Abarbeitung die entsprechende Funktion aufrufen (vorerst nicht machen)\
+- Bei Disconnect bzw. connect zuerst die ganze Kommunikationsqueue l\'f6schen\
+- Kommunikationsreferenz ist aktuell das \'fcbergebene tag\
+- Bei jeder Kommunikationsr\'fcckmeldung die Queue durchgehen und auf TimeOuts untersuchen\
+- Nach jedem PRotokoll senden, einen Timeout neu setzen. Bei Ende des Timeouts die Queue durchgehen und auf Timeouts untersuchen\
+- Eine Queue als separate Klassen in Jet32 instantiieren.\
+- Telegramme in Queue ablegen und sofort senden.\
+\
+\
+\
+}

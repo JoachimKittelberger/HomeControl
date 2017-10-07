@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>timeout</key>
+	<integer>4000</integer>
 	<key>host</key>
 	<string>192.168.4.51</string>
 	<key>udpPortSend</key>
