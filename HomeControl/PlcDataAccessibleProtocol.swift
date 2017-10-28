@@ -26,5 +26,6 @@ protocol PlcDataAccessibleProtocol {
     func setOutput(_ number: UInt, tag: UInt)
     func clearOutput(_ number: UInt, tag: UInt)
     
+    func readIntRegisterSync(_ number: UInt, tag: UInt) -> Int
 }
 

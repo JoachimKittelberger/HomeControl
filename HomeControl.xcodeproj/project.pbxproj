@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		278DCF811F72FA0B008DEFEA /* HomeControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278DCF801F72FA0B008DEFEA /* HomeControlTests.swift */; };
+		279261EF1FA4B02A0069FE47 /* Jet32+PlcDataAccessibleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279261EE1FA4B02A0069FE47 /* Jet32+PlcDataAccessibleProtocol.swift */; };
 		27A5E8531EEBE0BB005ABA8F /* Jet32DataTelegram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A5E8521EEBE0BB005ABA8F /* Jet32DataTelegram.swift */; };
 		27B642631EF2F70800E485B1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B642621EF2F70800E485B1 /* SettingsViewController.swift */; };
 		27B642651EF429A600E485B1 /* PLCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B642641EF429A600E485B1 /* PLCViewController.swift */; };
@@ -46,6 +47,7 @@
 		278DCF7E1F72FA0B008DEFEA /* HomeControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		278DCF801F72FA0B008DEFEA /* HomeControlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControlTests.swift; sourceTree = "<group>"; };
 		278DCF821F72FA0B008DEFEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		279261EE1FA4B02A0069FE47 /* Jet32+PlcDataAccessibleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Jet32+PlcDataAccessibleProtocol.swift"; sourceTree = "<group>"; };
 		27A5E8521EEBE0BB005ABA8F /* Jet32DataTelegram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jet32DataTelegram.swift; sourceTree = "<group>"; };
 		27B642621EF2F70800E485B1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		27B642641EF429A600E485B1 /* PLCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLCViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				27EEB5B31F890FE00033427E /* PlcDataAccessibleProtocol.swift */,
 				27EEB5B51F8917F40033427E /* PlcDataAccessibleDelegate.swift */,
 				27EEB5B71F8919540033427E /* PlcDataAccessEntry.swift */,
+				279261EE1FA4B02A0069FE47 /* Jet32+PlcDataAccessibleProtocol.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				27A5E8531EEBE0BB005ABA8F /* Jet32DataTelegram.swift in Sources */,
 				27EEB5B81F8919540033427E /* PlcDataAccessEntry.swift in Sources */,
 				27B642631EF2F70800E485B1 /* SettingsViewController.swift in Sources */,
+				279261EF1FA4B02A0069FE47 /* Jet32+PlcDataAccessibleProtocol.swift in Sources */,
 				27C876B61EE92BBA00CD4A3F /* Jet32.swift in Sources */,
 				27C876B01EE8463F00CD4A3F /* ShutterList.swift in Sources */,
 			);

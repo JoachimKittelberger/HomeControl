@@ -223,7 +223,7 @@ class ShutterTableViewController: UITableViewController {
         
         // TODO Test: Read the second register
         let homeControlConnection = Jet32.sharedInstance
-        let _ = homeControlConnection.readIntRegister(102911)
+        let _ = homeControlConnection.readIntReg(102911)
         
         // load this row again to update the view with animation
         tableView.reloadRows(at: [indexPath], with: .fade)

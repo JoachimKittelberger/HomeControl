@@ -30,6 +30,9 @@ class PlcDataAccessEntry {
     let value: UInt32
     
     var retVal: UInt32
+    var telegramID: UInt32
+    
+    static var globalID: UInt32 = 0;
     
     
     /*
@@ -54,15 +57,21 @@ class PlcDataAccessEntry {
         self.number = number
         self.value = value
         
+        PlcDataAccessEntry.globalID += 1
+        self.telegramID = PlcDataAccessEntry.globalID
+        
         self.retVal = 0;
+//        print("Create new PlcDataAccessEntry \(self.telegramID)")
     }
     
     //send()
     
 }
 
-
-
+/*
+// infos über MultiThreading-Programmierung:
+https://www.appcoda.com/grand-central-dispatch/
+*/
 
 
 

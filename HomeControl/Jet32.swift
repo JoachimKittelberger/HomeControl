@@ -26,10 +26,16 @@ class Jet32 : NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     
-    private var delegate:Jet32Delegate?
-    func setDelegate(delegate: Jet32Delegate?) {
+    private var delegate:PlcDataAccessibleDelegate?
+    func setDelegate(delegate: PlcDataAccessibleDelegate?) {
         self.delegate = delegate
-        print("Jet32.setDelegate \(String(describing: delegate))")
+        
+        // wenn sich niemand mehr dafür interessiert, darf die queue gelöscht werden
+        if (delegate == nil) {
+            clearPlcDataAccessQueue()
+        }
+        
+        print("PlcDataAccessibleDelegate.setDelegate \(String(describing: delegate))")
     }
     
     
@@ -46,7 +52,7 @@ class Jet32 : NSObject, GCDAsyncUdpSocketDelegate {
     var isConnected : Bool = false     // TODO: mit Timeout-Überprüfung
     
     // TODO communication with Queue
-    var PlcCDataAccessQueue = [PlcDataAccessEntry]()
+    var PlcDataAccessQueue = [PlcDataAccessEntry]()
     
     
     
@@ -63,54 +69,86 @@ class Jet32 : NSObject, GCDAsyncUdpSocketDelegate {
             if data[0] == 0x4A && data[1] == 0x57 && data[2] == 0x49 && data[3] == 0x50 {
 
                 // read communication-Reference
-                let comRef = (UInt(data[8]) * 256*256*256) + (UInt(data[9]) * 256*256) + (UInt(data[10]) * 256) + UInt(data[11])
+                var comRef = (UInt(data[8]) * 256*256*256) + (UInt(data[9]) * 256*256) + (UInt(data[10]) * 256) + UInt(data[11])
                 var inValue: UInt = 0
                 
-                // its a PCOM-Message
-/*                if data.count >= 24 {       // for readRegister
-                    if data[20] == 0x20 {       // return PCOM-ReadRegister
-                        inValue = (UInt(data[21]) * 256*256) + (UInt(data[22]) * 256) + UInt(data[23])
-//                        print("didReceive ReadRegister \(inValue) with tag: \(comRef)")
-                    }
-*/
-                if data.count >= 26 {       // for readVariable
-                    if data[20] == 0x20 {       // return PCOM-ReadRegister
-                        let type = data[21]     // read type of returnvalue
+                
+                // TODO: anhand ComRef die eigentliche Referenz herausfinden und den WErt zurückgeben
+                if comRef != 0 {
+
+                    let telegramID = UInt32(comRef)
+                    
+                    if let offset = PlcDataAccessQueue.index(where: { $0.telegramID == telegramID }) {
                         
-                        inValue = (UInt(data[22]) * 256*256*256) + (UInt(data[23]) * 256*256) + (UInt(data[24]) * 256) + UInt(data[25])
-//                        print("didReceive ReadVariable \(inValue) with tag: \(comRef) and type: \(type)")
-                    }
-                    
-                    // call individual Handler defined in Protocol
-                    delegate?.didReceiveReadRegister(value: inValue, tag: comRef)
-                    
-                    
-                    
-                } else if data.count >= 21 {
-                    if comRef != 0 {
-                        // status oder Merker, Ausgangsrückmeldung
-                        if data[20] == 0x20 {       // Flag is 0
-                            print("didReceive ReadFlag reset \(data[20]) with tag: \(comRef)")
-
-                            // call individual Handler defined in Protocol
-                            delegate?.didReceiveReadFlag(value: false, tag: comRef)
+                        let originalComRef = UInt(PlcDataAccessQueue[offset].comRef)
+                        
+                        comRef = originalComRef
+                        
+                        let type = PlcDataAccessQueue[offset].type
+                        let cmd = PlcDataAccessQueue[offset].cmd
+                        let number = PlcDataAccessQueue[offset].number
+                        
+                        switch type {
+                        case .IntegerRegister:
+                            
+                            if data.count >= 26 {       // for readVariable
+                                if data[20] == 0x20 {       // return PCOM-ReadRegister
+                                    let datatype = data[21]     // read type of returnvalue
+                                    
+                                    inValue = (UInt(data[22]) * 256*256*256) + (UInt(data[23]) * 256*256) + (UInt(data[24]) * 256) + UInt(data[25])
+                                }
+                                
+                                // call individual Handler defined in Protocol
+                                delegate?.didRedeiveReadIntRegister(UInt(number), with: Int(inValue), tag: comRef)
+                            } else {
+                                print("wrong Datalength for Read.IntegerRegister")
+                            }
+                            
+                        
+                        case .Flag:
+                            
+                            if data.count >= 21 {
+                                // status oder Merker, Ausgangsrückmeldung
+                                if data[20] == 0x20 {       // Flag is 0
+//                                    print("didReceive ReadFlag reset \(data[20]) with tag: \(comRef)")
+                                        
+                                    // call individual Handler defined in Protocol
+                                    delegate?.didRedeiveReadFlag(UInt(number), with: false, tag: comRef)
+                                }
+                                else if data[20] == 0x21 {  // Flag is 1
+//                                    print("didReceive ReadFlag set \(data[20]) with tag: \(comRef)")
+                                        
+                                    // call individual Handler defined in Protocol
+                                    delegate?.didRedeiveReadFlag(UInt(number), with: true, tag: comRef)
+                                }
+                                else {
+                                     print("didReceive ReadFlag Status \(data[20]) with tag: \(comRef)")
+                                }
+                            } else {
+                                print("wrong Datalength for Read.Flag")
+                            }
+                        
+                            
+                        default:
+                            print("Datatype not supported!")
                         }
-                        else if data[20] == 0x21 {  // Flag is 1
-                            print("didReceive ReadFlag set \(data[20]) with tag: \(comRef)")
-
-                            // call individual Handler defined in Protocol
-                            delegate?.didReceiveReadFlag(value: true, tag: comRef)
+                        
+                        /*
+                        enum DataType {
+                            case IntegerRegister, Flag, Input, Output, FloatRegister, String
                         }
-                        else {
-                            print("didReceive ReadFlag Status \(data[20]) with tag: \(comRef)")
+                        enum Command {
+                            case read, write, clear, set
                         }
-                      
+                       */
+                        
+                        PlcDataAccessQueue.remove(at: offset)
                     }
-                    else {
-                        print("didReceive Status \(data[20]) with tag: \(comRef)")
-                    }
-                    return
                 }
+                else {
+                    print("didReceive Status \(data[20]) with tag: \(comRef)")
+                }
+                return
 
             } else {
                 print("didRecieve other protocol from Socket: \(data.hexEncodedString())")
@@ -147,8 +185,6 @@ class Jet32 : NSObject, GCDAsyncUdpSocketDelegate {
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didNotConnect error: Error?) {
         print("didNotConnect \(String(describing: error?.localizedDescription))")
-        
-        
     }
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didSendDataWithTag tag: Int) {
@@ -157,9 +193,6 @@ class Jet32 : NSObject, GCDAsyncUdpSocketDelegate {
 
     func udpSocket(_ sock: GCDAsyncUdpSocket, didNotSendDataWithTag tag: Int, dueToError error: Error?) {
         print("didNotSendDataWithTag \(tag) \(String(describing: error?.localizedDescription))")
-        
-        
-        
     }
     
     
@@ -212,7 +245,22 @@ class Jet32 : NSObject, GCDAsyncUdpSocketDelegate {
             outSocket?.close()
         }
         outSocket = nil
+        
+        
+        // TODO finalize the queues
+        clearPlcDataAccessQueue()
+        
+        
+        
     }
+    
+    
+    func clearPlcDataAccessQueue() {
+        print("PlcDataAccessQueue.count ≠\(PlcDataAccessQueue.count)")
+        PlcDataAccessQueue.removeAll()         // TODO hier sollte sicher sein, dass nicht noch ein Element verwendet wird.
+        
+    }
+    
     
     
     func send(message: String){
@@ -236,11 +284,16 @@ class Jet32 : NSObject, GCDAsyncUdpSocketDelegate {
     }
 
     
-    func readFlag(_ number: Int, tag: UInt32 = 0) {
-        let Jet32Data = Jet32DataTelegram(receivePort: UInt32(udpPortReceive), command: Jet32Command.readFlag, number: UInt32(number), tag: tag)
-        outSocket?.send(Jet32Data.getData() as Data, withTimeout: timeout, tag:0)
-//        print("readFlag \(number)")
+    func readFlagOld(_ number: Int, tag: UInt32 = 0) {
+//        let Jet32Data = Jet32DataTelegram(receivePort: UInt32(udpPortReceive), command: Jet32Command.readFlag, number: UInt32(number), tag: tag)
+//        outSocket?.send(Jet32Data.getData() as Data, withTimeout: timeout, tag:0)
+
+        //        print("readFlag \(number)")
         // TODO: udpsocket ReceiveWithTimeOut?????
+        
+        
+        readFlag(UInt(number), tag: UInt(tag))
+        
     }
   
     func setFlag(_ number: Int) {
@@ -259,14 +312,33 @@ class Jet32 : NSObject, GCDAsyncUdpSocketDelegate {
     
     
     
-    func readIntRegister(_ number: Int, tag: UInt32 = 0) -> Int {
-//        let Jet32Data = Jet32DataTelegram(receivePort: UInt32(udpPortReceive), command: Jet32Command.readIntRegister, number: UInt32(number), tag: tag)
-        let Jet32Data = Jet32DataTelegram(receivePort: UInt32(udpPortReceive), command: Jet32Command.readVariable, number: UInt32(number), tag: tag)
-        outSocket?.send(Jet32Data.getData() as Data, withTimeout: timeout, tag:0)
-//        print("readIntRegister \(number) with tag: \(tag)")
+    func readIntReg(_ number: Int, tag: UInt32 = 0) -> Int {
+//        let Jet32Data = Jet32DataTelegram(receivePort: UInt32(udpPortReceive), command: Jet32Command.readVariable, number: UInt32(number), tag: tag)
+//        outSocket?.send(Jet32Data.getData() as Data, withTimeout: timeout, tag:0)
+
         // TODO: return the wright value
+        
+        
+        
+        // read with queue
+        readIntRegister(UInt(number), tag: UInt(tag))
+        
+        
         return 0;
     }
+
+    
+    
+    
+    
+    func readIntRegSync(_ number: Int, tag: UInt32 = 0) -> Int {
+        
+        // read with queue
+        return readIntRegisterSync(UInt(number), tag: UInt(tag))
+    }
+    
+    
+    
     
     
     func writeIntRegister(_ number: Int, to value: Int) -> Bool {
