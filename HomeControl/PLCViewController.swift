@@ -106,6 +106,11 @@ class PLCViewController: UIViewController {
         currentStateWind.text = "Aktueller Windstatus: ???"
         currentStateLight.text = "Aktueller Lichtstatus: ???"
 
+        let myView = (self.view as! UIScrollView)
+        myView.isScrollEnabled = true
+//        myView.contentSize = CGSize
+        
+        
 /*
         // TODO jk: Müsste eigentlich in viewDidAppear gemacht werden. Ist das erste mal dort aber zu früh
         readTimeFromPLC()
@@ -144,7 +149,7 @@ class PLCViewController: UIViewController {
     }
     
     
-    func onTimer() {
+    @objc func onTimer() {
         readTimeFromPLC()
         readStatesFromPLC()
    }
@@ -287,7 +292,7 @@ class PLCViewController: UIViewController {
     }
     
     
-    func switchChanged(mySwitch: UISwitch) {
+    @objc func switchChanged(mySwitch: UISwitch) {
         
         let isOn = mySwitch.isOn
         

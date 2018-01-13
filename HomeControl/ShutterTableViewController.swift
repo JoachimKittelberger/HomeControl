@@ -170,7 +170,7 @@ class ShutterTableViewController: UITableViewController {
     }
  */
 
-    func imageUpTaped(tapGestureRecognizerUp: UITapGestureRecognizer) {
+    @objc func imageUpTaped(tapGestureRecognizerUp: UITapGestureRecognizer) {
         
         // Die  Info, welches Image gedrückt wurde, ist im .tag hinterlegt
         let tapedImage = tapGestureRecognizerUp.view as! UIImageView
@@ -189,7 +189,7 @@ class ShutterTableViewController: UITableViewController {
     
     
     
-    func imageDownTaped(tapGestureRecognizerDown: UITapGestureRecognizer) {
+    @objc func imageDownTaped(tapGestureRecognizerDown: UITapGestureRecognizer) {
         
         // Die  Info, welches Image gedrückt wurde, ist im .tag hinterlegt
         let tapedImage = tapGestureRecognizerDown.view as! UIImageView
