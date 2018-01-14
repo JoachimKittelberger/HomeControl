@@ -106,10 +106,7 @@ class PLCViewController: UIViewController {
         currentStateWind.text = "Aktueller Windstatus: ???"
         currentStateLight.text = "Aktueller Lichtstatus: ???"
 
-        let myView = (self.view as! UIScrollView)
-        myView.isScrollEnabled = true
-//        myView.contentSize = CGSize
-        
+
         
 /*
         // TODO jk: Müsste eigentlich in viewDidAppear gemacht werden. Ist das erste mal dort aber zu früh
